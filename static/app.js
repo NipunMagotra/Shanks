@@ -1,5 +1,12 @@
+// Check if a backend URL is passed in the query parameters (e.g. ?api=https://your-backend.onrender.com)
+const urlParams = new URLSearchParams(window.location.search);
+const apiParam = urlParams.get('api');
+if (apiParam) {
+    localStorage.setItem('BACKEND_API_URL', apiParam);
+}
+
 // Base URL for backend API queries (useful when frontend is hosted on Netlify and backend on Render)
-const API_BASE = window.BACKEND_API_URL || 
+const API_BASE = localStorage.getItem('BACKEND_API_URL') || window.BACKEND_API_URL || 
     ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
         ? ''
         : 'https://shanks-backend.onrender.com'); // Replace with actual backend Render URL when deployed

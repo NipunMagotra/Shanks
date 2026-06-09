@@ -6,10 +6,10 @@ if (apiParam) {
 }
 
 // Base URL for backend API queries (useful when frontend is hosted on Netlify and backend on Render)
-const API_BASE = localStorage.getItem('BACKEND_API_URL') || window.BACKEND_API_URL || 
+const API_BASE = localStorage.getItem('BACKEND_API_URL') || window.BACKEND_API_URL ||
     ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
         ? ''
-        : 'https://shanks-backend.onrender.com'); // Replace with actual backend Render URL when deployed
+        : 'https://shankstwitch.netlify.app/'); // Replace with actual backend Render URL when deployed
 
 document.addEventListener('DOMContentLoaded', () => {
     // Current Chart.js instance tracking to prevent canvas overlap
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanels = document.querySelectorAll('.tab-panel');
-    
+
     // KPI elements
     const kpiTotalMessages = document.getElementById('kpi-total-messages');
     const kpiUniqueChatters = document.getElementById('kpi-unique-chatters');
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const targetTab = btn.getAttribute('data-tab');
-            
+
             // Toggle buttons active state
             tabBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
@@ -106,13 +106,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const kpis = data.kpis;
                 kpiTotalMessages.textContent = formatNum(kpis.total_messages);
                 kpiUniqueChatters.textContent = formatNum(kpis.total_chatters);
-                
+
                 const subPct = ((kpis.subscriber_messages / kpis.total_messages) * 100).toFixed(1);
                 kpiSubRatio.textContent = `${subPct}%`;
 
                 const modPct = ((kpis.moderator_messages / kpis.total_messages) * 100).toFixed(1);
                 kpiModRatio.textContent = `${modPct}%`;
-                
+
                 kpiTotalVods.textContent = kpis.total_vods;
 
                 // Populate Top Chatters
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Keyword Search Handler
     const executeSearch = (keyword) => {
         if (!keyword) return;
-        
+
         // Update UI States to show loading spinner
         searchPromptState.style.display = 'none';
         searchResults.style.display = 'none';
@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (target.classList.contains('pill-badge')) {
             const word = target.getAttribute('data-word');
             searchInput.value = word;
-            
+
             // Switch tabs to Word Search tab first
             const searchTabBtn = document.querySelector('.tab-btn[data-tab="tab-search"]');
             if (searchTabBtn) {

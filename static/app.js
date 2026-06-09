@@ -174,6 +174,14 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
                 console.error("Dashboard stats failed to load:", err);
+                const errorRow = `<tr><td colspan="3" class="placeholder" style="color: #ef4444;">Failed to load data. Check backend connection.</td></tr>`;
+                tableTopChatters.innerHTML = errorRow;
+                tableTopSubs.innerHTML = errorRow;
+                tableTopMods.innerHTML = errorRow;
+                tableTopEmotes.innerHTML = errorRow;
+                tableTopWords.innerHTML = errorRow;
+                tableTopDays.innerHTML = errorRow;
+                tableVodList.innerHTML = `<tr><td colspan="7" class="placeholder" style="color: #ef4444;">Failed to load streams. Check backend connection.</td></tr>`;
             });
     };
 

@@ -5,11 +5,8 @@ if (apiParam) {
     localStorage.setItem('BACKEND_API_URL', apiParam);
 }
 
-// Base URL for backend API queries (useful when frontend is hosted on Netlify and backend on Render)
-const API_BASE = localStorage.getItem('BACKEND_API_URL') || window.BACKEND_API_URL ||
-    ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-        ? ''
-        : 'https://shankstwitch.netlify.app/'); // Replace with actual backend Render URL when deployed
+// Base URL for backend API queries (defaults to empty string for relative paths, or reads from localStorage override)
+const API_BASE = localStorage.getItem('BACKEND_API_URL') || window.BACKEND_API_URL || '';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Current Chart.js instance tracking to prevent canvas overlap

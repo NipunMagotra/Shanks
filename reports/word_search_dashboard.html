@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Statistics Search Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #080a10;
+            --surface-color: rgba(22, 26, 45, 0.4);
+            --surface-light: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #8e95b2;
+            --accent-purple: #9146FF;
+            --accent-cyan: #00f2fe;
+            --accent-gradient: linear-gradient(135deg, #9146FF 0%, #00f2fe 100%);
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 3rem 2rem;
+            background-image: 
+                radial-gradient(circle at 5% 10%, rgba(145, 70, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 95% 90%, rgba(0, 242, 254, 0.08) 0%, transparent 40%);
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(145, 70, 255, 0.15);
+            border: 1px solid var(--accent-purple);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Search Box */
+        .search-container {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            flex-grow: 1;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.25);
+        }
+
+        .word-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            align-items: center;
+        }
+
+        .suggestion-title {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+        }
+
+        .word-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .word-pill:hover, .word-pill.active {
+            background: var(--accent-gradient);
+            color: var(--text-primary);
+            border-color: transparent;
+            font-weight: 600;
+        }
+
+        /* Dashboard Results Grid */
+        .dashboard {
+            display: none;
+            flex-direction: column;
+            gap: 2rem;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        .stats-summary-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .stats-summary-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .kpi-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-left: 4px solid var(--accent-cyan);
+        }
+
+        .kpi-title {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Table Design */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 0.95rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .rank-badge {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        tr:nth-child(1) .rank-badge {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+        }
+        tr:nth-child(2) .rank-badge {
+            background: rgba(192, 192, 192, 0.2);
+            color: #c0c0c0;
+        }
+        tr:nth-child(3) .rank-badge {
+            background: rgba(205, 127, 50, 0.2);
+            color: #cd7f32;
+        }
+
+        /* Sample Messages CSS */
+        .sample-messages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.2rem;
+            position: relative;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .message-user {
+            font-weight: 600;
+            color: var(--accent-cyan);
+        }
+
+        .message-time {
+            color: var(--text-secondary);
+        }
+
+        .message-body {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+        .message-stream {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            background: rgba(145, 70, 255, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="badge">Database Search Utility</div>
+            <h1>Twitch Word Analytics</h1>
+            <p class="subtitle">Search occurrences, top users, and sample chat messages</p>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <div style="width: 100%;">
+                <div class="search-input-wrapper">
+                    <input type="text" id="searchInput" placeholder="Type a word to search (e.g. Chud, washed)...">
+                </div>
+                <div class="word-suggestions">
+                    <span class="suggestion-title">Pre-analyzed words:</span>
+                    <!-- Pills generated dynamically -->
+                    <div id="pillsContainer" style="display: inline-flex; gap: 0.5rem; flex-wrap: wrap;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Outputs -->
+        <div id="noResults" class="no-results">
+            Type a word or select a pill above to view statistics.
+        </div>
+
+        <div id="dashboard" class="dashboard">
+            <!-- Row 1: KPI & Top Users -->
+            <div class="stats-summary-row">
+                <div class="card kpi-card">
+                    <div class="kpi-title">Total Occurrences</div>
+                    <div class="kpi-value" id="totalOccurrences">0</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <span>Top Commenters</span>
+                        <span style="font-size: 0.85rem; color: var(--text-secondary);">User Leaderboard</span>
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 60px;">Rank</th>
+                                    <th>Username</th>
+                                    <th style="text-align: right;">Occurrences</th>
+                                </tr>
+                            </thead>
+                            <tbody id="topUsersBody">
+                                <!-- Generated Dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Top VODs and Sample Messages -->
+            <div class="stats-summary-row">
+                <div class="card">
+                    <div class="card-title">
+                        <span>Top Streams</span>
+                        <span style="font-size: 0.85rem; color: var(--text-secondary);">Per Stream Occurrence</span>
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Stream Title</th>
+                                    <th style="text-align: right; width: 100px;">Count</th>
+                                </tr>
+                            </thead>
+                            <tbody id="topStreamsBody">
+                                <!-- Generated Dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Contextual Sample Messages</div>
+                    <div class="sample-messages-list" id="sampleMessagesContainer">
+                        <!-- Generated Dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Word Search Dashboard | Integrated Analytics Platform</p>
+        </div>
+    </div>
+
+    <script>
+        // Embedded Data generated from SQLite
+        const statsData = {"nigger": {"word": "nigger", "total_count": 0, "top_users": [], "top_streams": [], "sample_messages": []}, "nigga": {"word": "nigga", "total_count": 21, "top_users": [{"username": "Thaarealkayla", "count": 3}, {"username": "Alakart11", "count": 2}, {"username": "Ashtrixxxx", "count": 2}, {"username": "g0gmazi0s", "count": 2}, {"username": "AnAnonymousGifter", "count": 1}, {"username": "Asafking1584", "count": 1}, {"username": "MARLBORO_smoker_", "count": 1}, {"username": "YunakVL", "count": 1}, {"username": "acesnt", "count": 1}, {"username": "aissacd", "count": 1}], "top_streams": [{"title": "\ud83d\udd34G2 SHANKS\ud83d\udd34RANKED ALL DAY WITH BIG BRO S0MCS \ud83d\udd34", "vod_id": "2752667694", "count": 3}, {"title": "duo with @s0mcs | im so sick", "vod_id": "2753543743", "count": 2}, {"title": "\ud83d\udd34G2 SHANKS \ud83d\udd34 TH VS M8 \ud83d\udd34 VCT EMEA WATCHPARTY\ud83d\udd34", "vod_id": "2755866987", "count": 2}, {"title": "I AM NOT WASHED", "vod_id": "2770155086", "count": 2}, {"title": "DRG vs WOL - Week 2 Day 3 - 2026 VCT CN Stage 1 @ Hangzhou", "vod_id": "2743697354", "count": 1}], "sample_messages": [{"username": "MARLBORO_smoker_", "message": "nigga im so drunk", "timestamp": "2026-05-28T20:40:59.529Z", "stream_title": "G2 SHANKS | TOP 10 RADIANT PUSH WITH S0MCS"}, {"username": "g0gmazi0s", "message": "@mobin_ct cash for niggas", "timestamp": "2026-05-18T06:15:14.917Z", "stream_title": "rare drinking stream with prod"}, {"username": "xdarrenr", "message": "nigga brushing his teeth at 7pm", "timestamp": "2026-05-15T23:55:45.409Z", "stream_title": "\ud83d\udd34G2 SHANKS\ud83d\udd34 GE VS FULLSENSE \ud83d\udd34 APAC PLAYOFF WATCHPARTY \ud83d\udd34"}, {"username": "Thaarealkayla", "message": "@simonellars my nigga", "timestamp": "2026-05-12T13:03:05.299Z", "stream_title": "I AM NOT WASHED"}, {"username": "simonellars", "message": "sup nigga", "timestamp": "2026-05-12T13:02:42.896Z", "stream_title": "I AM NOT WASHED"}]}, "Chinese": {"word": "Chinese", "total_count": 943, "top_users": [{"username": "s0mcs", "count": 59}, {"username": "rondale_dingleberry", "count": 19}, {"username": "zannaval", "count": 18}, {"username": "jerius9940", "count": 16}, {"username": "idotax", "count": 13}, {"username": "makemorethantheyspend", "count": 13}, {"username": "subkorean", "count": 11}, {"username": "Alb_Tropojan", "count": 10}, {"username": "Warpuppet_OPAC", "count": 10}, {"username": "sliunko", "count": 9}], "top_streams": [{"title": "\ud83d\udd35G2 SHANKS\ud83d\udd35 G2 VS LEV\ud83d\udd35 ARE WE WASHED OR ARE WE BACK\ud83d\udd35", "vod_id": "2751385178", "count": 184}, {"title": "G2 SHANKS | DUO WITH SAM | LONDON WATCHPARTY | VITALITY AND NRG FAN |", "vod_id": "2790001192", "count": 59}, {"title": "EDG vs XLG - Week 3 Day 3 - 2026 VCT CN Stage 1 @ Hangzhou", "vod_id": "2749364853", "count": 50}, {"title": "\ud83d\udd34 G2 SHANKS \ud83d\udd34 LEARNING HOW TO VAL AGAIN \ud83d\udd34 RADIANT MADNESS \ud83d\udd34", "vod_id": "2747824961", "count": 48}, {"title": "DRG vs WOL - Week 2 Day 3 - 2026 VCT CN Stage 1 @ Hangzhou", "vod_id": "2743697354", "count": 43}], "sample_messages": [{"username": "mrhawkex", "message": "sato is chinese brazilian american at the same time", "timestamp": "2026-06-07T18:42:34.903Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "kingkane25", "message": "@shanks_ttv should Patmen get ready to learn chinese???????", "timestamp": "2026-06-07T17:35:32.874Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "snowfntx", "message": "u are my favorite chinese streamer", "timestamp": "2026-06-07T16:52:06.29Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "frelitzz", "message": "cus u r chinese", "timestamp": "2026-06-07T16:33:24.175Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "nexxplayz06", "message": "AI CHINESE ROBOT", "timestamp": "2026-06-07T15:48:53.795Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}]}, "Chud": {"word": "Chud", "total_count": 10066, "top_users": [{"username": "olivx0", "count": 191}, {"username": "xlr8vlr", "count": 185}, {"username": "kilobyteVLR", "count": 169}, {"username": "xhyperegend_", "count": 169}, {"username": "mikaelabye", "count": 158}, {"username": "raincoxt", "count": 146}, {"username": "buglicker34", "count": 144}, {"username": "UARRRRRRRR", "count": 109}, {"username": "weaverpa1277", "count": 101}, {"username": "gen_11_4_g2", "count": 98}], "top_streams": [{"title": "\ud83d\udd34 G2 SHANKS \ud83d\udd34 TH VS FUT \ud83d\udd34 EMEA WATCHPARTY \ud83d\udd34 FURIA VS NRG \ud83d\udd34", "vod_id": "2773463112", "count": 488}, {"title": "\ud83d\udd25 G2  SHANKS \ud83d\udd25 IM BACKKKK \ud83d\udd25 LEARNING HOW TO PLAY VALORANT \ud83d\udd25 WOOO \ud83d\udd25", "vod_id": "2764675860", "count": 464}, {"title": "\ud83d\udd34 G2 SHANKS \ud83d\udd34 FNC VS TH \ud83d\udd34 EMEA WATCHPARTY \ud83d\udd34", "vod_id": "2768703542", "count": 456}, {"title": "\ud83d\udd34G2 SHANKS \ud83d\udd34 TH VS M8 \ud83d\udd34 VCT EMEA WATCHPARTY\ud83d\udd34", "vod_id": "2755866987", "count": 455}, {"title": "G2 SHANKS |T1 V ZETA | VCT Pacific STAGE 1 #VCTWatchParty |", "vod_id": "2757393962", "count": 411}], "sample_messages": [{"username": "unaskedcookie", "message": "fuck am i subbed to this chud for if im not even winning gg", "timestamp": "2026-06-07T20:17:50.401Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "zannaval", "message": "CHUD LEAVE", "timestamp": "2026-06-07T20:16:40.154Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "mythical__999", "message": "LOOK AT THAT CHUD", "timestamp": "2026-06-07T20:16:35.486Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "thomasK156", "message": "BIRTHDAY CHUD", "timestamp": "2026-06-07T20:16:32.354Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "Qixsz", "message": "my user id is shanksisafatchuddyasian \u034f", "timestamp": "2026-06-07T20:14:28.667Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}]}, "fat": {"word": "fat", "total_count": 5932, "top_users": [{"username": "olivx0", "count": 105}, {"username": "buglicker34", "count": 97}, {"username": "Fossabot", "count": 74}, {"username": "xlr8vlr", "count": 74}, {"username": "xhyperegend_", "count": 72}, {"username": "kill3r784", "count": 65}, {"username": "UARRRRRRRR", "count": 62}, {"username": "thomasK156", "count": 50}, {"username": "IIIllllIIlllIIl", "count": 49}, {"username": "xtraspidey", "count": 48}], "top_streams": [{"title": "\ud83d\udd34 G2 SHANKS \ud83d\udd34 TH VS FUT \ud83d\udd34 EMEA WATCHPARTY \ud83d\udd34 FURIA VS NRG \ud83d\udd34", "vod_id": "2773463112", "count": 315}, {"title": "EDG vs XLG - Week 3 Day 3 - 2026 VCT CN Stage 1 @ Hangzhou", "vod_id": "2749364853", "count": 289}, {"title": "\ud83d\udd34G2 SHANKS \ud83d\udd34 TH VS M8 \ud83d\udd34 VCT EMEA WATCHPARTY\ud83d\udd34", "vod_id": "2755866987", "count": 278}, {"title": "\ud83d\udd34 G2 SHANKS \ud83d\udd34 FNC VS TH \ud83d\udd34 EMEA WATCHPARTY \ud83d\udd34", "vod_id": "2768703542", "count": 276}, {"title": "G2 SHANKS | FNC VS GX | EMEA WATCHPARTY", "vod_id": "2755124559", "count": 227}], "sample_messages": [{"username": "Qixsz", "message": "my user id is shanksisafatchuddyasian \u034f", "timestamp": "2026-06-07T20:14:28.667Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "Qixsz", "message": "my user id is shanksisafatchuddyasian", "timestamp": "2026-06-07T20:14:18.898Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "cdan1el_", "message": "wassup fatty", "timestamp": "2026-06-07T20:10:29.925Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "SamTM023", "message": "Fat packs for fat guy", "timestamp": "2026-06-07T19:55:42.666Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "olivx0", "message": "uughh fat chuds", "timestamp": "2026-06-07T19:37:10.319Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}]}, "washed": {"word": "washed", "total_count": 3612, "top_users": [{"username": "Fossabot", "count": 1507}, {"username": "girlface_ww", "count": 48}, {"username": "umiodrag", "count": 37}, {"username": "weaverpa1277", "count": 27}, {"username": "sinethhh", "count": 24}, {"username": "toreamodeo", "count": 18}, {"username": "1weet1", "count": 16}, {"username": "adtyr0033", "count": 16}, {"username": "rinolul", "count": 16}, {"username": "rishon26", "count": 16}], "top_streams": [{"title": "1", "vod_id": "1843211458", "count": 274}, {"title": "\ud83d\udd25 G2  SHANKS \ud83d\udd25 IM BACKKKK \ud83d\udd25 LEARNING HOW TO PLAY VALORANT \ud83d\udd25 WOOO \ud83d\udd25", "vod_id": "2764675860", "count": 205}, {"title": "I AM NOT WASHED", "vod_id": "2770155086", "count": 188}, {"title": "2", "vod_id": "1843212706", "count": 165}, {"title": "\ud83d\udd34G2 SHANKS\ud83d\udd34RANKED ALL DAY WITH BIG BRO S0MCS \ud83d\udd34", "vod_id": "2752667694", "count": 148}], "sample_messages": [{"username": "Fossabot", "message": "Shanks has tried his best but FAILED 109653 times. WASHED", "timestamp": "2026-06-07T20:11:45.918Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "Fossabot", "message": "Shanks has tried his best but FAILED 109652 times. WASHED", "timestamp": "2026-06-07T18:05:20.975Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "Fossabot", "message": "Shanks has tried his best but FAILED 109651 times. WASHED", "timestamp": "2026-06-07T17:41:48.308Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "Fossabot", "message": "Shanks has tried his best but FAILED 109650 times. WASHED", "timestamp": "2026-06-07T17:39:57.3Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}, {"username": "Fossabot", "message": "Shanks has tried his best but FAILED 109649 times. WASHED", "timestamp": "2026-06-07T17:27:00.38Z", "stream_title": "\ud83d\udd34G2 SHANKS \ud83d\udd34FS VS FUT \ud83d\udd34 PRIMMIE GLAZERS WYA \ud83d\udd34"}]}};
+
+        const searchInput = document.getElementById('searchInput');
+        const pillsContainer = document.getElementById('pillsContainer');
+        const noResults = document.getElementById('noResults');
+        const dashboard = document.getElementById('dashboard');
+
+        const totalOccurrences = document.getElementById('totalOccurrences');
+        const topUsersBody = document.getElementById('topUsersBody');
+        const topStreamsBody = document.getElementById('topStreamsBody');
+        const sampleMessagesContainer = document.getElementById('sampleMessagesContainer');
+
+        // Initialize suggestion pills
+        Object.keys(statsData).forEach(word => {
+            const pill = document.createElement('div');
+            pill.className = 'word-pill';
+            pill.textContent = word;
+            pill.onclick = () => {
+                searchInput.value = word;
+                showDashboard(word);
+            };
+            pillsContainer.appendChild(pill);
+        });
+
+        // Listen for input changes
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.trim().toLowerCase();
+            if (statsData[query]) {
+                showDashboard(query);
+            } else {
+                hideDashboard();
+            }
+        });
+
+        function showDashboard(word) {
+            const data = statsData[word];
+            if (!data) return;
+
+            // Update suggestions active class
+            document.querySelectorAll('.word-pill').forEach(pill => {
+                if (pill.textContent === word) {
+                    pill.classList.add('active');
+                } else {
+                    pill.classList.remove('active');
+                }
+            });
+
+            // 1. Update total count
+            totalOccurrences.textContent = data.total_count.toLocaleString();
+
+            // 2. Update top users
+            topUsersBody.innerHTML = '';
+            if (data.top_users.length === 0) {
+                topUsersBody.innerHTML = `<tr><td colspan="3" style="text-align: center; color: var(--text-secondary);">No data</td></tr>`;
+            } else {
+                data.top_users.forEach((user, index) => {
+                    topUsersBody.innerHTML += `
+                        <tr>
+                            <td><span class="rank-badge">${index + 1}</span></td>
+                            <td style="font-weight: 600; color: var(--accent-cyan);">${user.username}</td>
+                            <td style="text-align: right; font-weight: 600;">${user.count.toLocaleString()}</td>
+                        </tr>
+                    `;
+                });
+            }
+
+            // 3. Update top streams
+            topStreamsBody.innerHTML = '';
+            if (data.top_streams.length === 0) {
+                topStreamsBody.innerHTML = `<tr><td colspan="2" style="text-align: center; color: var(--text-secondary);">No data</td></tr>`;
+            } else {
+                data.top_streams.forEach(stream => {
+                    topStreamsBody.innerHTML += `
+                        <tr>
+                            <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                <span style="font-weight: 600;">${stream.title}</span><br/>
+                                <span style="font-size: 0.8rem; color: var(--text-secondary); font-family: monospace;">VOD: ${stream.vod_id}</span>
+                            </td>
+                            <td style="text-align: right; font-weight: 600; color: var(--accent-purple);">${stream.count.toLocaleString()}</td>
+                        </tr>
+                    `;
+                });
+            }
+
+            // 4. Update sample messages
+            sampleMessagesContainer.innerHTML = '';
+            if (data.sample_messages.length === 0) {
+                sampleMessagesContainer.innerHTML = `<div style="text-align: center; color: var(--text-secondary); padding: 2rem 0;">No messages found</div>`;
+            } else {
+                data.sample_messages.forEach(msg => {
+                    const dateFormatted = msg.timestamp ? new Date(msg.timestamp).toLocaleString() : 'N/A';
+                    sampleMessagesContainer.innerHTML += `
+                        <div class="message-item">
+                            <div class="message-header">
+                                <span class="message-user">${msg.username}</span>
+                                <span class="message-time">${dateFormatted}</span>
+                            </div>
+                            <div class="message-body">"${msg.message}"</div>
+                            <div class="message-stream">Stream: ${msg.stream_title}</div>
+                        </div>
+                    `;
+                });
+            }
+
+            // View state toggle
+            noResults.style.display = 'none';
+            dashboard.style.display = 'flex';
+        }
+
+        function hideDashboard() {
+            document.querySelectorAll('.word-pill').forEach(pill => pill.classList.remove('active'));
+            noResults.style.display = 'block';
+            noResults.textContent = "Word stats not pre-calculated. Type or click one of the analyzed words above.";
+            dashboard.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shanks_TTV Chat Archive Portal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- CSS stylesheet link -->
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Minimal Header -->
+        <header class="app-header">
+            <div class="brand-row">
+                <span class="brand-title">shanks_ttv</span>
+                <span class="brand-separator">//</span>
+                <span class="brand-subtitle">chat archive portal</span>
+            </div>
+            <p class="brand-description">Minimal fan-made database explorer analyzing 1.36 million messages from streamer Shanks.</p>
+        </header>
+
+        <!-- KPI Summary Cards (Minimal Grid) -->
+        <section class="kpi-grid">
+            <div class="kpi-card">
+                <span class="kpi-label">total messages</span>
+                <span class="kpi-value" id="kpi-total-messages">-</span>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-label">unique chatters</span>
+                <span class="kpi-value" id="kpi-unique-chatters">-</span>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-label">subscriber ratio</span>
+                <span class="kpi-value" id="kpi-sub-ratio">-</span>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-label">moderator ratio</span>
+                <span class="kpi-value" id="kpi-mod-ratio">-</span>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-label">archived streams</span>
+                <span class="kpi-value" id="kpi-total-vods">-</span>
+            </div>
+        </section>
+
+        <!-- Minimal Tab Toggles -->
+        <nav class="tab-navigation">
+            <button class="tab-btn active" data-tab="tab-leaderboards">Leaderboards</button>
+            <button class="tab-btn" data-tab="tab-vods">Streams & VODs</button>
+            <button class="tab-btn" data-tab="tab-search">Word Search</button>
+        </nav>
+
+        <!-- Content Area -->
+        <main class="tab-content-container">
+            
+            <!-- Tab 1: Leaderboards -->
+            <section class="tab-panel active" id="tab-leaderboards">
+                <div class="panel-grid">
+                    <!-- Top Chatters (Overall) -->
+                    <div class="panel-card">
+                        <h3 class="panel-card-title">Top 10 Chatters</h3>
+                        <table class="minimal-table">
+                            <thead>
+                                <tr>
+                                    <th>user</th>
+                                    <th class="align-right">messages</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-top-chatters">
+                                <tr><td colspan="2" class="placeholder">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Top Subscriber Chatters -->
+                    <div class="panel-card">
+                        <h3 class="panel-card-title">Top Subscriber Chatters</h3>
+                        <table class="minimal-table">
+                            <thead>
+                                <tr>
+                                    <th>user</th>
+                                    <th class="align-right">messages</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-top-subs">
+                                <tr><td colspan="2" class="placeholder">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Top Moderator Chatters -->
+                    <div class="panel-card">
+                        <h3 class="panel-card-title">Top Moderator Chatters</h3>
+                        <table class="minimal-table">
+                            <thead>
+                                <tr>
+                                    <th>user</th>
+                                    <th class="align-right">messages</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-top-mods">
+                                <tr><td colspan="2" class="placeholder">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Top Emotes -->
+                    <div class="panel-card">
+                        <h3 class="panel-card-title">Top 10 Emotes</h3>
+                        <table class="minimal-table">
+                            <thead>
+                                <tr>
+                                    <th>emote</th>
+                                    <th>id</th>
+                                    <th class="align-right">usages</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-top-emotes">
+                                <tr><td colspan="3" class="placeholder">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Top Precalculated Words -->
+                    <div class="panel-card">
+                        <h3 class="panel-card-title">Top Words (Filtered)</h3>
+                        <table class="minimal-table">
+                            <thead>
+                                <tr>
+                                    <th>word</th>
+                                    <th class="align-right">occurrences</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-top-words">
+                                <tr><td colspan="2" class="placeholder">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Active Days -->
+                    <div class="panel-card">
+                        <h3 class="panel-card-title">Top 10 Active Days</h3>
+                        <table class="minimal-table">
+                            <thead>
+                                <tr>
+                                    <th>date</th>
+                                    <th class="align-right">messages</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-top-days">
+                                <tr><td colspan="2" class="placeholder">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 2: Streams & VOD List -->
+            <section class="tab-panel" id="tab-vods">
+                <div class="panel-card full-width">
+                    <h3 class="panel-card-title">Archived Streams (Sorted by Message Count)</h3>
+                    <div class="table-wrapper">
+                        <table class="minimal-table">
+                            <thead>
+                                <tr>
+                                    <th>vod id</th>
+                                    <th>stream title</th>
+                                    <th>date</th>
+                                    <th>length</th>
+                                    <th>views</th>
+                                    <th class="align-right">chat count</th>
+                                    <th>link</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-vod-list">
+                                <tr><td colspan="7" class="placeholder">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 3: Word Search (Dynamic Engine) -->
+            <section class="tab-panel" id="tab-search">
+                <!-- Large Minimal Search Bar -->
+                <div class="search-bar-wrapper">
+                    <div class="search-input-container">
+                        <input type="text" id="word-search-input" placeholder="Type a word or phrase (e.g. washed, chud, nrg, subroza) and press Enter...">
+                        <button id="word-search-btn">Search</button>
+                    </div>
+                    
+                    <!-- Search suggestion pills -->
+                    <div class="search-suggestions">
+                        <span class="suggestion-label">Try:</span>
+                        <div class="pills-container" id="suggestion-pills">
+                            <span class="pill-badge" data-word="washed">washed</span>
+                            <span class="pill-badge" data-word="chud">chud</span>
+                            <span class="pill-badge" data-word="gamba">gamba</span>
+                            <span class="pill-badge" data-word="win">win</span>
+                            <span class="pill-badge" data-word="lol">lol</span>
+                            <span class="pill-badge" data-word="rofl">rofl</span>
+                            <span class="pill-badge" data-word="omg">omg</span>
+                            <span class="pill-badge" data-word="radiant">radiant</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Initial Search State -->
+                <div class="search-initial-state" id="search-prompt-state">
+                    <p>Enter a query above to scan the 1.36 million record chat archive.</p>
+                </div>
+
+                <!-- Search Loading State -->
+                <div class="search-loading-state" id="search-loading-state" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Scanning chat index... (takes ~0.4s)</p>
+                </div>
+
+                <!-- Search Results Layout -->
+                <div class="search-results-wrapper" id="search-results" style="display: none;">
+                    
+                    <!-- Search KPI Summary -->
+                    <div class="search-kpi-card">
+                        <span class="search-kpi-title">occurrences of '<span id="search-kpi-word"></span>'</span>
+                        <span class="search-kpi-val" id="search-total-count">-</span>
+                    </div>
+
+                    <!-- Search Detail Grid -->
+                    <div class="search-detail-grid">
+                        <!-- Top Users for Word -->
+                        <div class="panel-card">
+                            <h3 class="panel-card-title">Top Speakers</h3>
+                            <table class="minimal-table">
+                                <thead>
+                                    <tr>
+                                        <th>user</th>
+                                        <th class="align-right">count</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-search-users">
+                                    <!-- Populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Sparkline Trend Chart -->
+                        <div class="panel-card">
+                            <h3 class="panel-card-title">Occurrences per Stream Over Time</h3>
+                            <div class="chart-wrapper">
+                                <canvas id="search-trend-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sample Messages (Terminal Chat Style) -->
+                    <div class="panel-card full-width">
+                        <h3 class="panel-card-title">Contextual Chat Log Samples (Latest 20)</h3>
+                        <div class="chat-terminal" id="search-chat-logs">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Minimal Footer -->
+        <footer class="app-footer">
+            <p>fan made by a Shanks enjoyer &bull; chat logs database &bull; 2026-06-08</p>
+        </footer>
+    </div>
+
+    <!-- Frontend logic script link -->
+    <script src="/static/app.js"></script>
+</body>
+</html>

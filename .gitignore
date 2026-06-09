@@ -1,0 +1,26 @@
+# Database and Raw Data
+database/twitch_archive.db
+csv/
+parquet/
+chats_json/
+vods/*.json
+!vods/all_vods_list.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+
+# Environment and Logs
+.env
+logs/
+*.log

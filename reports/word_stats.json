@@ -1,0 +1,534 @@
+{
+  "nigger": {
+    "word": "nigger",
+    "total_count": 0,
+    "top_users": [],
+    "top_streams": [],
+    "sample_messages": []
+  },
+  "nigga": {
+    "word": "nigga",
+    "total_count": 21,
+    "top_users": [
+      {
+        "username": "Thaarealkayla",
+        "count": 3
+      },
+      {
+        "username": "Alakart11",
+        "count": 2
+      },
+      {
+        "username": "Ashtrixxxx",
+        "count": 2
+      },
+      {
+        "username": "g0gmazi0s",
+        "count": 2
+      },
+      {
+        "username": "AnAnonymousGifter",
+        "count": 1
+      },
+      {
+        "username": "Asafking1584",
+        "count": 1
+      },
+      {
+        "username": "MARLBORO_smoker_",
+        "count": 1
+      },
+      {
+        "username": "YunakVL",
+        "count": 1
+      },
+      {
+        "username": "acesnt",
+        "count": 1
+      },
+      {
+        "username": "aissacd",
+        "count": 1
+      }
+    ],
+    "top_streams": [
+      {
+        "title": "🔴G2 SHANKS🔴RANKED ALL DAY WITH BIG BRO S0MCS 🔴",
+        "vod_id": "2752667694",
+        "count": 3
+      },
+      {
+        "title": "duo with @s0mcs | im so sick",
+        "vod_id": "2753543743",
+        "count": 2
+      },
+      {
+        "title": "🔴G2 SHANKS 🔴 TH VS M8 🔴 VCT EMEA WATCHPARTY🔴",
+        "vod_id": "2755866987",
+        "count": 2
+      },
+      {
+        "title": "I AM NOT WASHED",
+        "vod_id": "2770155086",
+        "count": 2
+      },
+      {
+        "title": "DRG vs WOL - Week 2 Day 3 - 2026 VCT CN Stage 1 @ Hangzhou",
+        "vod_id": "2743697354",
+        "count": 1
+      }
+    ],
+    "sample_messages": [
+      {
+        "username": "MARLBORO_smoker_",
+        "message": "nigga im so drunk",
+        "timestamp": "2026-05-28T20:40:59.529Z",
+        "stream_title": "G2 SHANKS | TOP 10 RADIANT PUSH WITH S0MCS"
+      },
+      {
+        "username": "g0gmazi0s",
+        "message": "@mobin_ct cash for niggas",
+        "timestamp": "2026-05-18T06:15:14.917Z",
+        "stream_title": "rare drinking stream with prod"
+      },
+      {
+        "username": "xdarrenr",
+        "message": "nigga brushing his teeth at 7pm",
+        "timestamp": "2026-05-15T23:55:45.409Z",
+        "stream_title": "🔴G2 SHANKS🔴 GE VS FULLSENSE 🔴 APAC PLAYOFF WATCHPARTY 🔴"
+      },
+      {
+        "username": "Thaarealkayla",
+        "message": "@simonellars my nigga",
+        "timestamp": "2026-05-12T13:03:05.299Z",
+        "stream_title": "I AM NOT WASHED"
+      },
+      {
+        "username": "simonellars",
+        "message": "sup nigga",
+        "timestamp": "2026-05-12T13:02:42.896Z",
+        "stream_title": "I AM NOT WASHED"
+      }
+    ]
+  },
+  "Chinese": {
+    "word": "Chinese",
+    "total_count": 943,
+    "top_users": [
+      {
+        "username": "s0mcs",
+        "count": 59
+      },
+      {
+        "username": "rondale_dingleberry",
+        "count": 19
+      },
+      {
+        "username": "zannaval",
+        "count": 18
+      },
+      {
+        "username": "jerius9940",
+        "count": 16
+      },
+      {
+        "username": "idotax",
+        "count": 13
+      },
+      {
+        "username": "makemorethantheyspend",
+        "count": 13
+      },
+      {
+        "username": "subkorean",
+        "count": 11
+      },
+      {
+        "username": "Alb_Tropojan",
+        "count": 10
+      },
+      {
+        "username": "Warpuppet_OPAC",
+        "count": 10
+      },
+      {
+        "username": "sliunko",
+        "count": 9
+      }
+    ],
+    "top_streams": [
+      {
+        "title": "🔵G2 SHANKS🔵 G2 VS LEV🔵 ARE WE WASHED OR ARE WE BACK🔵",
+        "vod_id": "2751385178",
+        "count": 184
+      },
+      {
+        "title": "G2 SHANKS | DUO WITH SAM | LONDON WATCHPARTY | VITALITY AND NRG FAN |",
+        "vod_id": "2790001192",
+        "count": 59
+      },
+      {
+        "title": "EDG vs XLG - Week 3 Day 3 - 2026 VCT CN Stage 1 @ Hangzhou",
+        "vod_id": "2749364853",
+        "count": 50
+      },
+      {
+        "title": "🔴 G2 SHANKS 🔴 LEARNING HOW TO VAL AGAIN 🔴 RADIANT MADNESS 🔴",
+        "vod_id": "2747824961",
+        "count": 48
+      },
+      {
+        "title": "DRG vs WOL - Week 2 Day 3 - 2026 VCT CN Stage 1 @ Hangzhou",
+        "vod_id": "2743697354",
+        "count": 43
+      }
+    ],
+    "sample_messages": [
+      {
+        "username": "mrhawkex",
+        "message": "sato is chinese brazilian american at the same time",
+        "timestamp": "2026-06-07T18:42:34.903Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "kingkane25",
+        "message": "@shanks_ttv should Patmen get ready to learn chinese???????",
+        "timestamp": "2026-06-07T17:35:32.874Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "snowfntx",
+        "message": "u are my favorite chinese streamer",
+        "timestamp": "2026-06-07T16:52:06.29Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "frelitzz",
+        "message": "cus u r chinese",
+        "timestamp": "2026-06-07T16:33:24.175Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "nexxplayz06",
+        "message": "AI CHINESE ROBOT",
+        "timestamp": "2026-06-07T15:48:53.795Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      }
+    ]
+  },
+  "Chud": {
+    "word": "Chud",
+    "total_count": 10066,
+    "top_users": [
+      {
+        "username": "olivx0",
+        "count": 191
+      },
+      {
+        "username": "xlr8vlr",
+        "count": 185
+      },
+      {
+        "username": "kilobyteVLR",
+        "count": 169
+      },
+      {
+        "username": "xhyperegend_",
+        "count": 169
+      },
+      {
+        "username": "mikaelabye",
+        "count": 158
+      },
+      {
+        "username": "raincoxt",
+        "count": 146
+      },
+      {
+        "username": "buglicker34",
+        "count": 144
+      },
+      {
+        "username": "UARRRRRRRR",
+        "count": 109
+      },
+      {
+        "username": "weaverpa1277",
+        "count": 101
+      },
+      {
+        "username": "gen_11_4_g2",
+        "count": 98
+      }
+    ],
+    "top_streams": [
+      {
+        "title": "🔴 G2 SHANKS 🔴 TH VS FUT 🔴 EMEA WATCHPARTY 🔴 FURIA VS NRG 🔴",
+        "vod_id": "2773463112",
+        "count": 488
+      },
+      {
+        "title": "🔥 G2  SHANKS 🔥 IM BACKKKK 🔥 LEARNING HOW TO PLAY VALORANT 🔥 WOOO 🔥",
+        "vod_id": "2764675860",
+        "count": 464
+      },
+      {
+        "title": "🔴 G2 SHANKS 🔴 FNC VS TH 🔴 EMEA WATCHPARTY 🔴",
+        "vod_id": "2768703542",
+        "count": 456
+      },
+      {
+        "title": "🔴G2 SHANKS 🔴 TH VS M8 🔴 VCT EMEA WATCHPARTY🔴",
+        "vod_id": "2755866987",
+        "count": 455
+      },
+      {
+        "title": "G2 SHANKS |T1 V ZETA | VCT Pacific STAGE 1 #VCTWatchParty |",
+        "vod_id": "2757393962",
+        "count": 411
+      }
+    ],
+    "sample_messages": [
+      {
+        "username": "unaskedcookie",
+        "message": "fuck am i subbed to this chud for if im not even winning gg",
+        "timestamp": "2026-06-07T20:17:50.401Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "zannaval",
+        "message": "CHUD LEAVE",
+        "timestamp": "2026-06-07T20:16:40.154Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "mythical__999",
+        "message": "LOOK AT THAT CHUD",
+        "timestamp": "2026-06-07T20:16:35.486Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "thomasK156",
+        "message": "BIRTHDAY CHUD",
+        "timestamp": "2026-06-07T20:16:32.354Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "Qixsz",
+        "message": "my user id is shanksisafatchuddyasian ͏",
+        "timestamp": "2026-06-07T20:14:28.667Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      }
+    ]
+  },
+  "fat": {
+    "word": "fat",
+    "total_count": 5932,
+    "top_users": [
+      {
+        "username": "olivx0",
+        "count": 105
+      },
+      {
+        "username": "buglicker34",
+        "count": 97
+      },
+      {
+        "username": "Fossabot",
+        "count": 74
+      },
+      {
+        "username": "xlr8vlr",
+        "count": 74
+      },
+      {
+        "username": "xhyperegend_",
+        "count": 72
+      },
+      {
+        "username": "kill3r784",
+        "count": 65
+      },
+      {
+        "username": "UARRRRRRRR",
+        "count": 62
+      },
+      {
+        "username": "thomasK156",
+        "count": 50
+      },
+      {
+        "username": "IIIllllIIlllIIl",
+        "count": 49
+      },
+      {
+        "username": "xtraspidey",
+        "count": 48
+      }
+    ],
+    "top_streams": [
+      {
+        "title": "🔴 G2 SHANKS 🔴 TH VS FUT 🔴 EMEA WATCHPARTY 🔴 FURIA VS NRG 🔴",
+        "vod_id": "2773463112",
+        "count": 315
+      },
+      {
+        "title": "EDG vs XLG - Week 3 Day 3 - 2026 VCT CN Stage 1 @ Hangzhou",
+        "vod_id": "2749364853",
+        "count": 289
+      },
+      {
+        "title": "🔴G2 SHANKS 🔴 TH VS M8 🔴 VCT EMEA WATCHPARTY🔴",
+        "vod_id": "2755866987",
+        "count": 278
+      },
+      {
+        "title": "🔴 G2 SHANKS 🔴 FNC VS TH 🔴 EMEA WATCHPARTY 🔴",
+        "vod_id": "2768703542",
+        "count": 276
+      },
+      {
+        "title": "G2 SHANKS | FNC VS GX | EMEA WATCHPARTY",
+        "vod_id": "2755124559",
+        "count": 227
+      }
+    ],
+    "sample_messages": [
+      {
+        "username": "Qixsz",
+        "message": "my user id is shanksisafatchuddyasian ͏",
+        "timestamp": "2026-06-07T20:14:28.667Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "Qixsz",
+        "message": "my user id is shanksisafatchuddyasian",
+        "timestamp": "2026-06-07T20:14:18.898Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "cdan1el_",
+        "message": "wassup fatty",
+        "timestamp": "2026-06-07T20:10:29.925Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "SamTM023",
+        "message": "Fat packs for fat guy",
+        "timestamp": "2026-06-07T19:55:42.666Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "olivx0",
+        "message": "uughh fat chuds",
+        "timestamp": "2026-06-07T19:37:10.319Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      }
+    ]
+  },
+  "washed": {
+    "word": "washed",
+    "total_count": 3612,
+    "top_users": [
+      {
+        "username": "Fossabot",
+        "count": 1507
+      },
+      {
+        "username": "girlface_ww",
+        "count": 48
+      },
+      {
+        "username": "umiodrag",
+        "count": 37
+      },
+      {
+        "username": "weaverpa1277",
+        "count": 27
+      },
+      {
+        "username": "sinethhh",
+        "count": 24
+      },
+      {
+        "username": "toreamodeo",
+        "count": 18
+      },
+      {
+        "username": "1weet1",
+        "count": 16
+      },
+      {
+        "username": "adtyr0033",
+        "count": 16
+      },
+      {
+        "username": "rinolul",
+        "count": 16
+      },
+      {
+        "username": "rishon26",
+        "count": 16
+      }
+    ],
+    "top_streams": [
+      {
+        "title": "1",
+        "vod_id": "1843211458",
+        "count": 274
+      },
+      {
+        "title": "🔥 G2  SHANKS 🔥 IM BACKKKK 🔥 LEARNING HOW TO PLAY VALORANT 🔥 WOOO 🔥",
+        "vod_id": "2764675860",
+        "count": 205
+      },
+      {
+        "title": "I AM NOT WASHED",
+        "vod_id": "2770155086",
+        "count": 188
+      },
+      {
+        "title": "2",
+        "vod_id": "1843212706",
+        "count": 165
+      },
+      {
+        "title": "🔴G2 SHANKS🔴RANKED ALL DAY WITH BIG BRO S0MCS 🔴",
+        "vod_id": "2752667694",
+        "count": 148
+      }
+    ],
+    "sample_messages": [
+      {
+        "username": "Fossabot",
+        "message": "Shanks has tried his best but FAILED 109653 times. WASHED",
+        "timestamp": "2026-06-07T20:11:45.918Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "Fossabot",
+        "message": "Shanks has tried his best but FAILED 109652 times. WASHED",
+        "timestamp": "2026-06-07T18:05:20.975Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "Fossabot",
+        "message": "Shanks has tried his best but FAILED 109651 times. WASHED",
+        "timestamp": "2026-06-07T17:41:48.308Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "Fossabot",
+        "message": "Shanks has tried his best but FAILED 109650 times. WASHED",
+        "timestamp": "2026-06-07T17:39:57.3Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      },
+      {
+        "username": "Fossabot",
+        "message": "Shanks has tried his best but FAILED 109649 times. WASHED",
+        "timestamp": "2026-06-07T17:27:00.38Z",
+        "stream_title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴"
+      }
+    ]
+  }
+}

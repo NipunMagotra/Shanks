@@ -1,0 +1,1025 @@
+{
+  "kpis": {
+    "total_messages": 1366122,
+    "total_chatters": 29857,
+    "total_vods": 61,
+    "subscriber_messages": 267448,
+    "moderator_messages": 115794
+  },
+  "top_chatters": [
+    {
+      "username": "fisics8",
+      "count": 31792
+    },
+    {
+      "username": "mikaelabye",
+      "count": 27694
+    },
+    {
+      "username": "olivx0",
+      "count": 21121
+    },
+    {
+      "username": "weaverpa1277",
+      "count": 20035
+    },
+    {
+      "username": "buglicker34",
+      "count": 18851
+    },
+    {
+      "username": "s0mcs",
+      "count": 11309
+    },
+    {
+      "username": "ananya23456",
+      "count": 9276
+    },
+    {
+      "username": "sahebfps",
+      "count": 9078
+    },
+    {
+      "username": "8MILOOOO",
+      "count": 9035
+    },
+    {
+      "username": "gen_11_4_g2",
+      "count": 8488
+    }
+  ],
+  "top_subs": [
+    {
+      "username": "mikaelabye",
+      "count": 27689
+    },
+    {
+      "username": "ananya23456",
+      "count": 9193
+    },
+    {
+      "username": "8MILOOOO",
+      "count": 9013
+    },
+    {
+      "username": "sparkyyyyu",
+      "count": 8144
+    },
+    {
+      "username": "subkorean",
+      "count": 7677
+    },
+    {
+      "username": "lithp_trainer",
+      "count": 5557
+    },
+    {
+      "username": "xhyperegend_",
+      "count": 5497
+    },
+    {
+      "username": "SnorlaxLuvv",
+      "count": 4276
+    },
+    {
+      "username": "jemin__12",
+      "count": 3909
+    },
+    {
+      "username": "idotax",
+      "count": 3733
+    }
+  ],
+  "top_mods": [
+    {
+      "username": "olivx0",
+      "count": 21121
+    },
+    {
+      "username": "mikaelabye",
+      "count": 13259
+    },
+    {
+      "username": "s0mcs",
+      "count": 11308
+    },
+    {
+      "username": "sukuna_9899",
+      "count": 8343
+    },
+    {
+      "username": "infernalist",
+      "count": 6587
+    },
+    {
+      "username": "buglicker34",
+      "count": 5850
+    },
+    {
+      "username": "itsamejoy",
+      "count": 4766
+    },
+    {
+      "username": "jesskit26",
+      "count": 3292
+    },
+    {
+      "username": "heyitsadriana",
+      "count": 3215
+    },
+    {
+      "username": "xdarrenr",
+      "count": 2562
+    }
+  ],
+  "top_vods": [
+    {
+      "vod_id": "2768703542",
+      "title": "🔴 G2 SHANKS 🔴 FNC VS TH 🔴 EMEA WATCHPARTY 🔴",
+      "date": "2026-05-10",
+      "total_messages": 61128,
+      "count": 61128,
+      "views": 194642,
+      "duration": "13h16m16s",
+      "url": "https://www.twitch.tv/videos/2768703542"
+    },
+    {
+      "vod_id": "2764675860",
+      "title": "🔥 G2  SHANKS 🔥 IM BACKKKK 🔥 LEARNING HOW TO PLAY VALORANT 🔥 WOOO 🔥",
+      "date": "2026-05-05",
+      "total_messages": 56914,
+      "count": 56914,
+      "views": 200800,
+      "duration": "11h52m52s",
+      "url": "https://www.twitch.tv/videos/2764675860"
+    },
+    {
+      "vod_id": "2755866987",
+      "title": "🔴G2 SHANKS 🔴 TH VS M8 🔴 VCT EMEA WATCHPARTY🔴",
+      "date": "2026-04-24",
+      "total_messages": 54357,
+      "count": 54357,
+      "views": 197259,
+      "duration": "12h14m42s",
+      "url": "https://www.twitch.tv/videos/2755866987"
+    },
+    {
+      "vod_id": "2772610134",
+      "title": "🔴G2 SHANKS🔴 GE VS FULLSENSE 🔴 APAC PLAYOFF WATCHPARTY 🔴",
+      "date": "2026-05-15",
+      "total_messages": 49056,
+      "count": 49056,
+      "views": 209798,
+      "duration": "12h30m51s",
+      "url": "https://www.twitch.tv/videos/2772610134"
+    },
+    {
+      "vod_id": "2744422492",
+      "title": "🔴G2 SHANKS 🔴 DFM VS T1 🔴 GANBARE DFM 🔴",
+      "date": "2026-04-10",
+      "total_messages": 44377,
+      "count": 44377,
+      "views": 221584,
+      "duration": "10h27m16s",
+      "url": "https://www.twitch.tv/videos/2744422492"
+    },
+    {
+      "vod_id": "2790001192",
+      "title": "G2 SHANKS | DUO WITH SAM | LONDON WATCHPARTY | VITALITY AND NRG FAN |",
+      "date": "2026-06-06",
+      "total_messages": 43950,
+      "count": 43950,
+      "views": 127904,
+      "duration": "9h26m47s",
+      "url": "https://www.twitch.tv/videos/2790001192"
+    },
+    {
+      "vod_id": "2743697354",
+      "title": "DRG vs WOL - Week 2 Day 3 - 2026 VCT CN Stage 1 @ Hangzhou",
+      "date": "2026-04-09",
+      "total_messages": 43084,
+      "count": 43084,
+      "views": 0,
+      "duration": "N/A",
+      "url": "https://www.twitch.tv/videos/2743697354"
+    },
+    {
+      "vod_id": "2750153558",
+      "title": "G2 SHANKS | PRX vs TS - VCT Pacific #VCTWatchparty",
+      "date": "2026-04-17",
+      "total_messages": 42927,
+      "count": 42927,
+      "views": 137533,
+      "duration": "8h37m23s",
+      "url": "https://www.twitch.tv/videos/2750153558"
+    },
+    {
+      "vod_id": "2747824961",
+      "title": "🔴 G2 SHANKS 🔴 LEARNING HOW TO VAL AGAIN 🔴 RADIANT MADNESS 🔴",
+      "date": "2026-04-14",
+      "total_messages": 41994,
+      "count": 41994,
+      "views": 136518,
+      "duration": "10h59m41s",
+      "url": "https://www.twitch.tv/videos/2747824961"
+    },
+    {
+      "vod_id": "2749364853",
+      "title": "EDG vs XLG - Week 3 Day 3 - 2026 VCT CN Stage 1 @ Hangzhou",
+      "date": "2026-04-16",
+      "total_messages": 41066,
+      "count": 41066,
+      "views": 137010,
+      "duration": "9h42m4s",
+      "url": "https://www.twitch.tv/videos/2749364853"
+    },
+    {
+      "vod_id": "2767913907",
+      "title": "🔴G2 SHANKS🔴 TH VS BBL 🔴 VCT EMEA WATCHPARTY 🔴",
+      "date": "2026-05-09",
+      "total_messages": 40940,
+      "count": 40940,
+      "views": 139692,
+      "duration": "8h16m15s",
+      "url": "https://www.twitch.tv/videos/2767913907"
+    },
+    {
+      "vod_id": "2748571790",
+      "title": "FPX v TEC VCT CN Stage 1 Watch Party (GiantX and Na'vi LATER!)",
+      "date": "2026-04-15",
+      "total_messages": 39035,
+      "count": 39035,
+      "views": 149835,
+      "duration": "10h42m53s",
+      "url": "https://www.twitch.tv/videos/2748571790"
+    },
+    {
+      "vod_id": "2757393962",
+      "title": "G2 SHANKS |T1 V ZETA | VCT Pacific STAGE 1 #VCTWatchParty |",
+      "date": "2026-04-26",
+      "total_messages": 38594,
+      "count": 38594,
+      "views": 158421,
+      "duration": "8h41m8s",
+      "url": "https://www.twitch.tv/videos/2757393962"
+    },
+    {
+      "vod_id": "2766257405",
+      "title": "🔴G2 SHANKS🔴 IM UNC NOW 🔴 AM I WASHED? 🔴",
+      "date": "2026-05-07",
+      "total_messages": 37880,
+      "count": 37880,
+      "views": 115347,
+      "duration": "9h9m14s",
+      "url": "https://www.twitch.tv/videos/2766257405"
+    },
+    {
+      "vod_id": "2790899777",
+      "title": "🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴",
+      "date": "2026-06-07",
+      "total_messages": 35981,
+      "count": 35981,
+      "views": 102685,
+      "duration": "6h58m28s",
+      "url": "https://www.twitch.tv/videos/2790899777"
+    },
+    {
+      "vod_id": "2765459190",
+      "title": "🔴G2 SHANKS🔴 IM UNC NOW 🔴 AM I WASHED? 🔴",
+      "date": "2026-05-06",
+      "total_messages": 33608,
+      "count": 33608,
+      "views": 106037,
+      "duration": "9h6m47s",
+      "url": "https://www.twitch.tv/videos/2765459190"
+    },
+    {
+      "vod_id": "2755124559",
+      "title": "G2 SHANKS | FNC VS GX | EMEA WATCHPARTY",
+      "date": "2026-04-23",
+      "total_messages": 33537,
+      "count": 33537,
+      "views": 161792,
+      "duration": "9h11m45s",
+      "url": "https://www.twitch.tv/videos/2755124559"
+    },
+    {
+      "vod_id": "2791689209",
+      "title": "G2 SHANKS | VIT VS FUT | VCT LONDON WATCHPARTY",
+      "date": "2026-06-08",
+      "total_messages": 31966,
+      "count": 31966,
+      "views": 112619,
+      "duration": "6h44m41s",
+      "url": "https://www.twitch.tv/videos/2791689209"
+    },
+    {
+      "vod_id": "2774322029",
+      "title": "🥷🏿 G2 SHANKS 🥷🏿 VITALITY VS TH 🥷🏿",
+      "date": "2026-05-17",
+      "total_messages": 31965,
+      "count": 31965,
+      "views": 135555,
+      "duration": "6h21m49s",
+      "url": "https://www.twitch.tv/videos/2774322029"
+    },
+    {
+      "vod_id": "2773463112",
+      "title": "🔴 G2 SHANKS 🔴 TH VS FUT 🔴 EMEA WATCHPARTY 🔴 FURIA VS NRG 🔴",
+      "date": "2026-05-16",
+      "total_messages": 29525,
+      "count": 29525,
+      "views": 134000,
+      "duration": "7h35m21s",
+      "url": "https://www.twitch.tv/videos/2773463112"
+    },
+    {
+      "vod_id": "2752667694",
+      "title": "🔴G2 SHANKS🔴RANKED ALL DAY WITH BIG BRO S0MCS 🔴",
+      "date": "2026-04-20",
+      "total_messages": 29178,
+      "count": 29178,
+      "views": 101634,
+      "duration": "10h20m23s",
+      "url": "https://www.twitch.tv/videos/2752667694"
+    },
+    {
+      "vod_id": "2775750554",
+      "title": "G2 SHANKS | DOMINATING THE VALORANT RANKED QUES",
+      "date": "2026-05-19",
+      "total_messages": 26994,
+      "count": 26994,
+      "views": 109745,
+      "duration": "11h21m53s",
+      "url": "https://www.twitch.tv/videos/2775750554"
+    },
+    {
+      "vod_id": "2767089865",
+      "title": "18+| HOPEFULLY WE WIN TODAY?! | GIVEAWAYS |",
+      "date": "2026-05-08",
+      "total_messages": 26792,
+      "count": 26792,
+      "views": 89795,
+      "duration": "6h34m2s",
+      "url": "https://www.twitch.tv/videos/2767089865"
+    },
+    {
+      "vod_id": "2770155086",
+      "title": "I AM NOT WASHED",
+      "date": "2026-05-12",
+      "total_messages": 25973,
+      "count": 25973,
+      "views": 96245,
+      "duration": "9h14m54s",
+      "url": "https://www.twitch.tv/videos/2770155086"
+    },
+    {
+      "vod_id": "2750937226",
+      "title": "🔵DRX SHANKS🔵DRX VS GE🔵APAC WATCHPARTY🔵",
+      "date": "2026-04-18",
+      "total_messages": 25170,
+      "count": 25170,
+      "views": 117730,
+      "duration": "7h50m2s",
+      "url": "https://www.twitch.tv/videos/2750937226"
+    },
+    {
+      "vod_id": "2782815286",
+      "title": "G2 SHANKS | TOP 10 RADIANT PUSH WITH S0MCS",
+      "date": "2026-05-28",
+      "total_messages": 25042,
+      "count": 25042,
+      "views": 100734,
+      "duration": "11h29m22s",
+      "url": "https://www.twitch.tv/videos/2782815286"
+    },
+    {
+      "vod_id": "2778207864",
+      "title": "G2 SHANKS | G2 PLAYS TODAY | NRG PLEASE WIN",
+      "date": "2026-05-22",
+      "total_messages": 25026,
+      "count": 25026,
+      "views": 106627,
+      "duration": "10h45m58s",
+      "url": "https://www.twitch.tv/videos/2778207864"
+    },
+    {
+      "vod_id": "2776528881",
+      "title": "W STREAMER WHANKS | the power comes from a need, not a desire | !socials !instagram !youtube",
+      "date": "2026-05-20",
+      "total_messages": 23182,
+      "count": 23182,
+      "views": 99877,
+      "duration": "10h11m22s",
+      "url": "https://www.twitch.tv/videos/2776528881"
+    },
+    {
+      "vod_id": "2784501767",
+      "title": "G2 SHANKS | SHUFFLE MAX WINNING | I HATE WEMBY ",
+      "date": "2026-05-30",
+      "total_messages": 22377,
+      "count": 22377,
+      "views": 90703,
+      "duration": "6h33m41s",
+      "url": "https://www.twitch.tv/videos/2784501767"
+    },
+    {
+      "vod_id": "2783671101",
+      "title": "top 15 radiant | pushing for rank 1 with s0mcs",
+      "date": "2026-05-29",
+      "total_messages": 22049,
+      "count": 22049,
+      "views": 79462,
+      "duration": "11h3m26s",
+      "url": "https://www.twitch.tv/videos/2783671101"
+    },
+    {
+      "vod_id": "2780038547",
+      "title": "🏆G2 SHANKS 🏆 G2 VS LEV 🏆 NA GRAND FINALS 🏆 4X CHAMPIONS?! 🏆",
+      "date": "2026-05-24",
+      "total_messages": 21263,
+      "count": 21263,
+      "views": 103839,
+      "duration": "7h25m57s",
+      "url": "https://www.twitch.tv/videos/2780038547"
+    },
+    {
+      "vod_id": "2779226017",
+      "title": "G2 SHANKS | G2 VS NRG | BEATING NRG AGAIN |",
+      "date": "2026-05-23",
+      "total_messages": 20869,
+      "count": 20869,
+      "views": 106518,
+      "duration": "7h30m20s",
+      "url": "https://www.twitch.tv/videos/2779226017"
+    },
+    {
+      "vod_id": "2782084949",
+      "title": "G2 SHANKS | IM BACK AND DOMINATING VALORANT BABY |",
+      "date": "2026-05-27",
+      "total_messages": 19950,
+      "count": 19950,
+      "views": 73837,
+      "duration": "8h24m33s",
+      "url": "https://www.twitch.tv/videos/2782084949"
+    },
+    {
+      "vod_id": "2753543743",
+      "title": "duo with @s0mcs | im so sick",
+      "date": "2026-04-21",
+      "total_messages": 19675,
+      "count": 19675,
+      "views": 78922,
+      "duration": "7h47m46s",
+      "url": "https://www.twitch.tv/videos/2753543743"
+    },
+    {
+      "vod_id": "2769452488",
+      "title": "🚀 RADIANT GRIND 🚀 !ev63 !reacts 🚀 LIVE EVERYDAY @8:30 AM ET 🚀",
+      "date": "2026-05-11",
+      "total_messages": 19630,
+      "count": 19630,
+      "views": 66289,
+      "duration": "5h22m7s",
+      "url": "https://www.twitch.tv/videos/2769452488"
+    },
+    {
+      "vod_id": "2770920337",
+      "title": "AM I WASHED??? GETTING RADIANT WITH SAMM",
+      "date": "2026-05-13",
+      "total_messages": 19450,
+      "count": 19450,
+      "views": 70614,
+      "duration": "7h17m17s",
+      "url": "https://www.twitch.tv/videos/2770920337"
+    },
+    {
+      "vod_id": "2751965427",
+      "title": "XLG v All Gamers VCT CN Stage 1 Watch Party",
+      "date": "2026-04-19",
+      "total_messages": 18762,
+      "count": 18762,
+      "views": 72392,
+      "duration": "5h34m11s",
+      "url": "https://www.twitch.tv/videos/2751965427"
+    },
+    {
+      "vod_id": "2744854093",
+      "title": "🔴G2 SHANKS 🔴 SEN VS KRU 🔴 G2 VS MIBR 🔴",
+      "date": "2026-04-10",
+      "total_messages": 17712,
+      "count": 17712,
+      "views": 84108,
+      "duration": "5h15m13s",
+      "url": "https://www.twitch.tv/videos/2744854093"
+    },
+    {
+      "vod_id": "2774723352",
+      "title": "rare drinking stream with prod",
+      "date": "2026-05-18",
+      "total_messages": 17206,
+      "count": 17206,
+      "views": 54869,
+      "duration": "7h54m33s",
+      "url": "https://www.twitch.tv/videos/2774723352"
+    },
+    {
+      "vod_id": "2772053782",
+      "title": "G2 SHANKS - FURIA VS LEV",
+      "date": "2026-05-14",
+      "total_messages": 16475,
+      "count": 16475,
+      "views": 44233,
+      "duration": "5h50m37s",
+      "url": "https://www.twitch.tv/videos/2772053782"
+    },
+    {
+      "vod_id": "2751385178",
+      "title": "🔵G2 SHANKS🔵 G2 VS LEV🔵 ARE WE WASHED OR ARE WE BACK🔵",
+      "date": "2026-04-18",
+      "total_messages": 15118,
+      "count": 15118,
+      "views": 46673,
+      "duration": "3h51m32s",
+      "url": "https://www.twitch.tv/videos/2751385178"
+    },
+    {
+      "vod_id": "1831922719",
+      "title": "Highlight: FaZe Shanks | DAY 7/60 | RADIANT RANKED WITH JAY WON | NRG VS LOUD FINALS |",
+      "date": "2023-05-28",
+      "total_messages": 10734,
+      "count": 10734,
+      "views": 471,
+      "duration": "3h0m27s",
+      "url": "https://www.twitch.tv/videos/1831922719"
+    },
+    {
+      "vod_id": "2556374034",
+      "title": "Highlight: 🔴 EU SHANKS 🔴 DOMINATING RADIANTS WITH BATU 🔴 MINECRAFT LATER 🔴",
+      "date": "2025-09-02",
+      "total_messages": 8498,
+      "count": 8498,
+      "views": 1628,
+      "duration": "3h19m52s",
+      "url": "https://www.twitch.tv/videos/2556374034"
+    },
+    {
+      "vod_id": "2756665338",
+      "title": "DFM vs VL | VCT Pacific STAGE 1 #VCTWatchParty |",
+      "date": "2026-04-25",
+      "total_messages": 7412,
+      "count": 7412,
+      "views": 36156,
+      "duration": "2h15m6s",
+      "url": "https://www.twitch.tv/videos/2756665338"
+    },
+    {
+      "vod_id": "2754206527",
+      "title": "so sick | short one with prod",
+      "date": "2026-04-22",
+      "total_messages": 5918,
+      "count": 5918,
+      "views": 19365,
+      "duration": "2h6m30s",
+      "url": "https://www.twitch.tv/videos/2754206527"
+    },
+    {
+      "vod_id": "2777838415",
+      "title": "SEARCHING FOR THE ANCIENT SCROLLS WITH PROD",
+      "date": "2026-05-22",
+      "total_messages": 5838,
+      "count": 5838,
+      "views": 21334,
+      "duration": "2h55m22s",
+      "url": "https://www.twitch.tv/videos/2777838415"
+    },
+    {
+      "vod_id": "1811009471",
+      "title": "Highlight: FaZe Shanks | RADIANT RANKED | LAKERS IN 6 | KAIZEN",
+      "date": "2023-05-04",
+      "total_messages": 4610,
+      "count": 4610,
+      "views": 523,
+      "duration": "1h31m21s",
+      "url": "https://www.twitch.tv/videos/1811009471"
+    },
+    {
+      "vod_id": "1843212706",
+      "title": "2",
+      "date": "2023-06-11",
+      "total_messages": 4390,
+      "count": 4390,
+      "views": 119,
+      "duration": "1h12m9s",
+      "url": "https://www.twitch.tv/videos/1843212706"
+    },
+    {
+      "vod_id": "1843211458",
+      "title": "1",
+      "date": "2023-06-11",
+      "total_messages": 3984,
+      "count": 3984,
+      "views": 142,
+      "duration": "1h0m0s",
+      "url": "https://www.twitch.tv/videos/1843211458"
+    },
+    {
+      "vod_id": "1747364519",
+      "title": "3",
+      "date": "2023-02-24",
+      "total_messages": 3862,
+      "count": 3862,
+      "views": 303,
+      "duration": "1h46m3s",
+      "url": "https://www.twitch.tv/videos/1747364519"
+    },
+    {
+      "vod_id": "1790454790",
+      "title": "Highlight: FaZe Shanks | DONT BE AFRAID OF GOING SLOWLY, BE AFRAID OF ONLY STANDING STILL",
+      "date": "2023-04-11",
+      "total_messages": 3454,
+      "count": 3454,
+      "views": 446,
+      "duration": "1h20m0s",
+      "url": "https://www.twitch.tv/videos/1790454790"
+    },
+    {
+      "vod_id": "2789980698",
+      "title": "18+ | max winning on packdraw",
+      "date": "2026-06-06",
+      "total_messages": 3223,
+      "count": 3223,
+      "views": 10598,
+      "duration": "53m2s",
+      "url": "https://www.twitch.tv/videos/2789980698"
+    },
+    {
+      "vod_id": "1658797410",
+      "title": "Highlight: FAZE SHANKS | RADIANT GAMEPLAY | FORTNITE? | WARZONE? | POKEY? |",
+      "date": "2022-11-21",
+      "total_messages": 2809,
+      "count": 2809,
+      "views": 905,
+      "duration": "1h9m9s",
+      "url": "https://www.twitch.tv/videos/1658797410"
+    },
+    {
+      "vod_id": "1843213714",
+      "title": "3",
+      "date": "2023-06-11",
+      "total_messages": 2703,
+      "count": 2703,
+      "views": 232,
+      "duration": "1h26m0s",
+      "url": "https://www.twitch.tv/videos/1843213714"
+    },
+    {
+      "vod_id": "1776049957",
+      "title": "Highlight: FaZe Shanks | RADIANT RANKED | TRYING MY HARDEST | ITS A PARADE INSICE MY CITY YEAHHH",
+      "date": "2023-03-26",
+      "total_messages": 2284,
+      "count": 2284,
+      "views": 502,
+      "duration": "43m46s",
+      "url": "https://www.twitch.tv/videos/1776049957"
+    },
+    {
+      "vod_id": "1843214187",
+      "title": "4",
+      "date": "2023-06-11",
+      "total_messages": 2135,
+      "count": 2135,
+      "views": 878,
+      "duration": "53m0s",
+      "url": "https://www.twitch.tv/videos/1843214187"
+    },
+    {
+      "vod_id": "1794163999",
+      "title": "Highlight: FaZe Shanks | APRIL FOOLS | FEELING SILLY | RADIANT RANKED",
+      "date": "2023-04-15",
+      "total_messages": 1705,
+      "count": 1705,
+      "views": 102,
+      "duration": "31m25s",
+      "url": "https://www.twitch.tv/videos/1794163999"
+    },
+    {
+      "vod_id": "2024193249",
+      "title": "2",
+      "date": "2024-01-06",
+      "total_messages": 1254,
+      "count": 1254,
+      "views": 376,
+      "duration": "50m21s",
+      "url": "https://www.twitch.tv/videos/2024193249"
+    },
+    {
+      "vod_id": "1749518406",
+      "title": "1",
+      "date": "2023-02-26",
+      "total_messages": 1218,
+      "count": 1218,
+      "views": 480,
+      "duration": "14m23s",
+      "url": "https://www.twitch.tv/videos/1749518406"
+    },
+    {
+      "vod_id": "1794238432",
+      "title": "Highlight: FAZE SHANKS | RADIANT RANKED | POSITIVITY :D",
+      "date": "2023-04-15",
+      "total_messages": 262,
+      "count": 262,
+      "views": 459,
+      "duration": "1m28s",
+      "url": "https://www.twitch.tv/videos/1794238432"
+    }
+  ],
+  "top_emotes": [
+    {
+      "name": "LUL",
+      "id": "425618",
+      "count": 3041
+    },
+    {
+      "name": "<3",
+      "id": "555555584",
+      "count": 1149
+    },
+    {
+      "name": "BigPhish",
+      "id": "160395",
+      "count": 1140
+    },
+    {
+      "name": "BabyRage",
+      "id": "22639",
+      "count": 845
+    },
+    {
+      "name": "cmonBruh",
+      "id": "84608",
+      "count": 752
+    },
+    {
+      "name": "Kappa",
+      "id": "25",
+      "count": 607
+    },
+    {
+      "name": ":D",
+      "id": "555555560",
+      "count": 492
+    },
+    {
+      "name": ":(",
+      "id": "555555558",
+      "count": 465
+    },
+    {
+      "name": ":)",
+      "id": "1",
+      "count": 411
+    },
+    {
+      "name": "DinoDance",
+      "id": "emotesv2_dcd06b30a5c24f6eb871e8f5edbd44f7",
+      "count": 374
+    }
+  ],
+  "monthly_trend": [
+    {
+      "month": "2022-11",
+      "count": 2809
+    },
+    {
+      "month": "2023-02",
+      "count": 5081
+    },
+    {
+      "month": "2023-03",
+      "count": 2285
+    },
+    {
+      "month": "2023-04",
+      "count": 5421
+    },
+    {
+      "month": "2023-05",
+      "count": 15345
+    },
+    {
+      "month": "2023-06",
+      "count": 13214
+    },
+    {
+      "month": "2024-01",
+      "count": 1254
+    },
+    {
+      "month": "2025-09",
+      "count": 8498
+    },
+    {
+      "month": "2026-04",
+      "count": 517932
+    },
+    {
+      "month": "2026-05",
+      "count": 679161
+    },
+    {
+      "month": "2026-06",
+      "count": 115122
+    }
+  ],
+  "hourly_trend": [
+    {
+      "hour": "00",
+      "count": 23490
+    },
+    {
+      "hour": "01",
+      "count": 41146
+    },
+    {
+      "hour": "02",
+      "count": 23028
+    },
+    {
+      "hour": "03",
+      "count": 16399
+    },
+    {
+      "hour": "04",
+      "count": 6085
+    },
+    {
+      "hour": "05",
+      "count": 5464
+    },
+    {
+      "hour": "06",
+      "count": 7413
+    },
+    {
+      "hour": "07",
+      "count": 9392
+    },
+    {
+      "hour": "08",
+      "count": 13050
+    },
+    {
+      "hour": "09",
+      "count": 10352
+    },
+    {
+      "hour": "10",
+      "count": 19047
+    },
+    {
+      "hour": "11",
+      "count": 36533
+    },
+    {
+      "hour": "12",
+      "count": 58541
+    },
+    {
+      "hour": "13",
+      "count": 80457
+    },
+    {
+      "hour": "14",
+      "count": 123186
+    },
+    {
+      "hour": "15",
+      "count": 136739
+    },
+    {
+      "hour": "16",
+      "count": 146118
+    },
+    {
+      "hour": "17",
+      "count": 131571
+    },
+    {
+      "hour": "18",
+      "count": 118128
+    },
+    {
+      "hour": "19",
+      "count": 110064
+    },
+    {
+      "hour": "20",
+      "count": 86001
+    },
+    {
+      "hour": "21",
+      "count": 73573
+    },
+    {
+      "hour": "22",
+      "count": 44307
+    },
+    {
+      "hour": "23",
+      "count": 46038
+    }
+  ],
+  "top_days": [
+    {
+      "date": "2026-04-10",
+      "count": 62091
+    },
+    {
+      "date": "2026-05-10",
+      "count": 61134
+    },
+    {
+      "date": "2026-05-05",
+      "count": 56915
+    },
+    {
+      "date": "2026-04-24",
+      "count": 54361
+    },
+    {
+      "date": "2026-05-15",
+      "count": 49061
+    },
+    {
+      "date": "2026-06-06",
+      "count": 47174
+    },
+    {
+      "date": "2026-04-09",
+      "count": 43084
+    },
+    {
+      "date": "2026-04-17",
+      "count": 42930
+    },
+    {
+      "date": "2026-04-14",
+      "count": 41994
+    },
+    {
+      "date": "2026-04-16",
+      "count": 41066
+    }
+  ],
+  "top_words": [
+    {
+      "word": "lol",
+      "count": 70344
+    },
+    {
+      "word": "gg",
+      "count": 24977
+    },
+    {
+      "word": "rt",
+      "count": 18762
+    },
+    {
+      "word": "ass",
+      "count": 17659
+    },
+    {
+      "word": "bang",
+      "count": 14608
+    },
+    {
+      "word": "gamba",
+      "count": 12788
+    },
+    {
+      "word": "lmfao",
+      "count": 12017
+    },
+    {
+      "word": "omg",
+      "count": 11591
+    },
+    {
+      "word": "bet",
+      "count": 11270
+    },
+    {
+      "word": "lmao",
+      "count": 10918
+    },
+    {
+      "word": "did",
+      "count": 10471
+    },
+    {
+      "word": "chud",
+      "count": 10284
+    }
+  ]
+}

@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch Chat Archive Report - shanks_ttv</title>
+    <!-- Outfit Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-color: #0c0e17;
+            --surface-color: rgba(25, 28, 48, 0.4);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #9aa0b9;
+            --accent-purple: #9146FF;
+            --accent-cyan: #00f2fe;
+            --accent-gradient: linear-gradient(135deg, #9146FF 0%, #00f2fe 100%);
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 2rem;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(145, 70, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header styling */
+        header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(145, 70, 255, 0.2);
+            border: 1px solid var(--accent-purple);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* KPI Cards Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .kpi-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-gradient);
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(145, 70, 255, 0.3);
+        }
+
+        .kpi-title {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        /* Main Content Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* Table Styling */
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 0.95rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-primary);
+        }
+
+        /* Custom Scrollbar */
+        .table-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .table-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background: rgba(145, 70, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(145, 70, 255, 0.5);
+        }
+
+        /* Emote pill design */
+        .emote-tag {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--accent-cyan);
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+        }
+
+        /* Keyframes */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(145, 70, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(145, 70, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(145, 70, 255, 0); }
+        }
+        
+        .footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="badge">Twitch Channel Archive</div>
+            <h1>shanks_ttv</h1>
+            <p class="subtitle">Chat Replay Data Intelligence Report</p>
+        </header>
+
+        <!-- KPI Cards -->
+        <section class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-title">Total Messages</div>
+                <div class="kpi-value">1,366,122</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Unique Chatters</div>
+                <div class="kpi-value">29,859</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Total VODs Archived</div>
+                <div class="kpi-value">60</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Avg Messages / Stream</div>
+                <div class="kpi-value">22,768</div>
+            </div>
+        </section>
+
+        <!-- Charts Dashboard Section -->
+        <section class="dashboard-grid" style="margin-bottom: 2rem;">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Yearly Distribution</div>
+                </div>
+                <div style="height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <canvas id="yearsChart"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Top 10 Emotes Usage</div>
+                </div>
+                <div style="height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <canvas id="emotesChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tables Dashboard Section -->
+        <section class="dashboard-grid">
+            <!-- Top Chatters -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Top 20 Chatters</div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Username</th>
+                                <th>User ID</th>
+                                <th>Messages</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">Fossabot</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">237719657</td>
+                                <td style="font-weight: 600;">36,109</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">fisics8</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">575864269</td>
+                                <td style="font-weight: 600;">31,792</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">mikaelabye</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">738411019</td>
+                                <td style="font-weight: 600;">27,694</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">olivx0</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">180869362</td>
+                                <td style="font-weight: 600;">21,121</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">weaverpa1277</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">518056310</td>
+                                <td style="font-weight: 600;">20,035</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">buglicker34</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">425594085</td>
+                                <td style="font-weight: 600;">18,851</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">s0mcs</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">128002336</td>
+                                <td style="font-weight: 600;">11,309</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">ananya23456</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">1070827722</td>
+                                <td style="font-weight: 600;">9,276</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">sahebfps</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">702459604</td>
+                                <td style="font-weight: 600;">9,078</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">8MILOOOO</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">945025111</td>
+                                <td style="font-weight: 600;">9,035</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">gen_11_4_g2</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">208220433</td>
+                                <td style="font-weight: 600;">8,488</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">sukuna_9899</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">882905075</td>
+                                <td style="font-weight: 600;">8,469</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">sparkyyyyu</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">146902112</td>
+                                <td style="font-weight: 600;">8,282</td>
+                            </tr>
+                            <tr>
+                                <td>14</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">subkorean</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">810145593</td>
+                                <td style="font-weight: 600;">7,964</td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">1Akise</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">1053605347</td>
+                                <td style="font-weight: 600;">7,768</td>
+                            </tr>
+                            <tr>
+                                <td>16</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">ayeinyoo</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">976166458</td>
+                                <td style="font-weight: 600;">7,613</td>
+                            </tr>
+                            <tr>
+                                <td>17</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">livlovelean</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">985581497</td>
+                                <td style="font-weight: 600;">6,669</td>
+                            </tr>
+                            <tr>
+                                <td>18</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">infernalist</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">60737792</td>
+                                <td style="font-weight: 600;">6,587</td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">lithp_trainer</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">1298928429</td>
+                                <td style="font-weight: 600;">6,221</td>
+                            </tr>
+                            <tr>
+                                <td>20</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">zannaval</td>
+                                <td style="color: var(--text-secondary); font-family: monospace;">473464480</td>
+                                <td style="font-weight: 600;">6,203</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Messages per VOD -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Recent Stream Archives (Top 20)</div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>VOD ID</th>
+                                <th>Stream Title</th>
+                                <th>Stream Date</th>
+                                <th>Messages</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-family: monospace;">2791689209</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">G2 SHANKS | VIT VS FUT | VCT LONDON WATCHPARTY</td>
+                                <td style="color: var(--text-secondary);">2026-06-08</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">31,967</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2790899777</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">🔴G2 SHANKS 🔴FS VS FUT 🔴 PRIMMIE GLAZERS WYA 🔴</td>
+                                <td style="color: var(--text-secondary);">2026-06-07</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">35,981</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2790001192</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">G2 SHANKS | DUO WITH SAM | LONDON WATCHPARTY | VITALITY AND NRG FAN |</td>
+                                <td style="color: var(--text-secondary);">2026-06-06</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">43,951</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2789980698</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">18+ | max winning on packdraw</td>
+                                <td style="color: var(--text-secondary);">2026-06-06</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">3,223</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2784501767</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">G2 SHANKS | SHUFFLE MAX WINNING | I HATE WEMBY </td>
+                                <td style="color: var(--text-secondary);">2026-05-30</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">22,377</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2783671101</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">top 15 radiant | pushing for rank 1 with s0mcs</td>
+                                <td style="color: var(--text-secondary);">2026-05-29</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">22,049</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2782815286</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">G2 SHANKS | TOP 10 RADIANT PUSH WITH S0MCS</td>
+                                <td style="color: var(--text-secondary);">2026-05-28</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">25,042</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2782084949</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">G2 SHANKS | IM BACK AND DOMINATING VALORANT BABY |</td>
+                                <td style="color: var(--text-secondary);">2026-05-27</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">19,953</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2780038547</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">🏆G2 SHANKS 🏆 G2 VS LEV 🏆 NA GRAND FINALS 🏆 4X CHAMPIONS?! 🏆</td>
+                                <td style="color: var(--text-secondary);">2026-05-24</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">21,265</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2779226017</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">G2 SHANKS | G2 VS NRG | BEATING NRG AGAIN |</td>
+                                <td style="color: var(--text-secondary);">2026-05-23</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">20,871</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2778207864</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">G2 SHANKS | G2 PLAYS TODAY | NRG PLEASE WIN</td>
+                                <td style="color: var(--text-secondary);">2026-05-22</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">25,026</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2777838415</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">SEARCHING FOR THE ANCIENT SCROLLS WITH PROD</td>
+                                <td style="color: var(--text-secondary);">2026-05-22</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">5,838</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2776528881</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">W STREAMER WHANKS | the power comes from a need, not a desire | !socials !instagram !youtube</td>
+                                <td style="color: var(--text-secondary);">2026-05-20</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">23,182</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2775750554</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">G2 SHANKS | DOMINATING THE VALORANT RANKED QUES</td>
+                                <td style="color: var(--text-secondary);">2026-05-19</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">26,994</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2774723352</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">rare drinking stream with prod</td>
+                                <td style="color: var(--text-secondary);">2026-05-18</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">17,206</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2774322029</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">🥷🏿 G2 SHANKS 🥷🏿 VITALITY VS TH 🥷🏿</td>
+                                <td style="color: var(--text-secondary);">2026-05-17</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">31,970</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2773463112</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">🔴 G2 SHANKS 🔴 TH VS FUT 🔴 EMEA WATCHPARTY 🔴 FURIA VS NRG 🔴</td>
+                                <td style="color: var(--text-secondary);">2026-05-16</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">29,528</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2772610134</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">🔴G2 SHANKS🔴 GE VS FULLSENSE 🔴 APAC PLAYOFF WATCHPARTY 🔴</td>
+                                <td style="color: var(--text-secondary);">2026-05-15</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">49,061</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2772053782</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">G2 SHANKS - FURIA VS LEV</td>
+                                <td style="color: var(--text-secondary);">2026-05-14</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">16,475</td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: monospace;">2770920337</td>
+                                <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">AM I WASHED??? GETTING RADIANT WITH SAMM</td>
+                                <td style="color: var(--text-secondary);">2026-05-13</td>
+                                <td style="font-weight: 600; color: var(--accent-purple);">19,451</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-grid" style="margin-top: 2rem;">
+            <!-- Top Emotes list details -->
+            <div class="card" style="grid-column: span 2;">
+                <div class="card-header">
+                    <div class="card-title">Emote Leaderboard (Top 20)</div>
+                </div>
+                <div class="table-container" style="max-height: 300px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Emote Trigger</th>
+                                <th>Emote ID</th>
+                                <th>Usage Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><span class="emote-tag">LUL</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">425618</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">3,041</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><span class="emote-tag"><3</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">555555584</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">1,149</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><span class="emote-tag">BigPhish</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">160395</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">1,140</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><span class="emote-tag">BabyRage</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">22639</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">845</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td><span class="emote-tag">cmonBruh</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">84608</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">752</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td><span class="emote-tag">Kappa</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">25</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">607</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td><span class="emote-tag">:D</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">555555560</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">492</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td><span class="emote-tag">:(</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">555555558</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">465</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td><span class="emote-tag">:)</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">1</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">411</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td><span class="emote-tag">DinoDance</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">emotesv2_dcd06b30a5c24f6eb871e8f5edbd44f7</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">374</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td><span class="emote-tag">NotLikeThis</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">58765</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">277</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td><span class="emote-tag">ResidentSleeper</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">245</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">275</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td><span class="emote-tag">shanks18W</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">emotesv2_657d0e288fb84235b0183d1751dd894a</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">263</td>
+                            </tr>
+                            <tr>
+                                <td>14</td>
+                                <td><span class="emote-tag">Jebaited</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">114836</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">186</td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td><span class="emote-tag">shanks18Dap</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">303578643</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">183</td>
+                            </tr>
+                            <tr>
+                                <td>16</td>
+                                <td><span class="emote-tag">VoteYea</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">106293</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">176</td>
+                            </tr>
+                            <tr>
+                                <td>17</td>
+                                <td><span class="emote-tag">shanks18Lithp</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">emotesv2_93e00fb7c5074038a38d5f9a018ee371</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">174</td>
+                            </tr>
+                            <tr>
+                                <td>18</td>
+                                <td><span class="emote-tag">shanks18Pride</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">emotesv2_28077870fd1842fe8d4f1af667941a4c</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">142</td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td><span class="emote-tag">shanks18Love</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">emotesv2_834507fc57204de08bdbf9cb402f16f0</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">128</td>
+                            </tr>
+                            <tr>
+                                <td>20</td>
+                                <td><span class="emote-tag">VoteNay</span></td>
+                                <td style="font-family: monospace; color: var(--text-secondary);">106294</td>
+                                <td style="font-weight: 600; color: var(--accent-cyan);">128</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer">
+            <p>Generated on 2026-06-09 11:16:55 | Twitch Chat Replay Archiver</p>
+        </div>
+    </div>
+
+    <!-- Chart Configuration Script -->
+    <script>
+        // Setup default chart styles
+        Chart.defaults.color = '#9aa0b9';
+        Chart.defaults.font.family = "'Outfit', sans-serif";
+
+        // Years distribution chart
+        const ctxYears = document.getElementById('yearsChart').getContext('2d');
+        new Chart(ctxYears, {
+            type: 'bar',
+            data: {
+                labels: ["2022", "2023", "2024", "2025", "2026"],
+                datasets: [{
+                    label: 'Messages',
+                    data: [2809, 41346, 1254, 8498, 1312215],
+                    backgroundColor: 'rgba(145, 70, 255, 0.6)',
+                    borderColor: '#9146FF',
+                    borderWidth: 1.5,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: { precision: 0 }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // Emotes chart
+        const ctxEmotes = document.getElementById('emotesChart').getContext('2d');
+        new Chart(ctxEmotes, {
+            type: 'doughnut',
+            data: {
+                labels: ["LUL", "<3", "BigPhish", "BabyRage", "cmonBruh", "Kappa", ":D", ":(", ":)", "DinoDance"],
+                datasets: [{
+                    data: [3041, 1149, 1140, 845, 752, 607, 492, 465, 411, 374],
+                    backgroundColor: [
+                        '#9146FF', '#00f2fe', '#f43f5e', '#10b981', '#f59e0b',
+                        '#8b5cf6', '#06b6d4', '#ec4899', '#3b82f6', '#14b8a6'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { boxWidth: 12, padding: 15 }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
